@@ -75,7 +75,6 @@ def train(rank, world_size):
         epoch_loss = 0
         
         for batch_idx, batch_data in enumerate(train_loader):
-            # Unpack the tuple (image, label) returned by ImageFolder
             images, labels = batch_data
             images, labels = images.to(rank), labels.to(rank)
             
