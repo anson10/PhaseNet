@@ -17,19 +17,16 @@ st.set_page_config(
 # --- White Text Visibility Fix ---
 st.markdown("""
     <style>
-    /* 1. Force the prediction text to be white and bold */
+
     [data-testid="stMetricValue"] {
         color: #ffffff !important;
         font-weight: 700 !important;
     }
 
-    /* 2. Force the metric labels (Predicted Phase/Confidence) to be white */
     [data-testid="stMetricLabel"] p {
         color: #ffffff !important;
         opacity: 0.9;
     }
-
-    /* 3. Style the card container to be semi-transparent dark */
     div[data-testid="metric-container"] {
         background-color: rgba(255, 255, 255, 0.05) !important;
         border: 1px solid rgba(255, 255, 255, 0.2) !important;
