@@ -1,0 +1,7 @@
+torch
+torchvision
+ovito
+fastapi
+streamlit
+uvicorn
+python-multipart
