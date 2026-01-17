@@ -1,0 +1,39 @@
+# Initialization 
+units           metal
+dimension       3
+boundary        p p p
+atom_style      atomic
+
+# System Definition 
+lattice         fcc 3.615
+region          box block 0 10 0 10 0 10
+create_box      1 box
+create_atoms    1 box
+
+# Interatomic Potential 
+pair_style      eam
+pair_coeff      * * Cu_u3.eam
+
+# Settings 
+neighbor        0.3 bin
+neigh_modify    delay 0 every 1 check yes
+
+# Equilibration (300K) 
+velocity        all create 300 87287 loop geom
+fix             1 all npt temp 300 300 0.1 iso 0 0 1.0
+thermo          1000
+run             5000
+
+# Production (Heating to 2000K) 
+# ramp the temperature to observe the phase transition
+unfix           1
+fix             2 all npt temp 300 2000 0.1 iso 0 0 1.0
+
+# Dump trajectory for OVITO
+dump 1 all custom 1000 melt.lammpstrj id type x y z
+
+# Log thermodynamics to check the melting point later
+thermo_style    custom step temp pe etotal press vol
+thermo          1000
+
+run             100000
