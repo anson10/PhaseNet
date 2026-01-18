@@ -5,16 +5,14 @@ from torchvision import models, transforms
 from PIL import Image
 import os
 
-# --- Page Configuration ---
+# Streamlit Page Configuration
 st.set_page_config(
     page_title="PhaseNet",
     page_icon="🔬",
     layout="wide"
 )
 
-# --- Targeted Visibility Fix ---
-# --- High-Contrast Visibility Fix ---
-# --- White Text Visibility Fix ---
+# Custom CSS for better visibility and contrast
 st.markdown("""
     <style>
 
@@ -37,7 +35,7 @@ st.markdown("""
 
     """, unsafe_allow_html=True)
 
-# --- Helper Functions ---
+# Helper Functions
 @st.cache_resource
 def load_model(model_path):
     model = models.resnet18(weights=None)
@@ -62,7 +60,7 @@ def predict(image, model):
         conf, pred = torch.max(probs, 1)
     return pred.item(), conf.item()
 
-# --- Header Section ---
+# Header
 st.title("PhaseNet: Deep Learning for Atomic Structures")
 st.markdown("""
     **Developer:** Anson Antony | **Institution:** TU Bergakademie Freiberg
@@ -72,7 +70,7 @@ st.markdown("""
 """)
 st.divider()
 
-# --- Main Interface ---
+# Main Application Interface
 col1, col2 = st.columns([1, 1.2], gap="large")
 
 with col1:
@@ -112,7 +110,7 @@ with col2:
     else:
         st.info("Waiting for image upload to begin analysis...")
 
-# --- Extra Details & Technical Specs ---
+# Technical Details Section
 st.divider()
 with st.expander("View Technical Implementation Details"):
     t_col1, t_col2 = st.columns(2)
@@ -134,7 +132,7 @@ with st.expander("View Technical Implementation Details"):
         """)
 
 # st.caption("© 2026 PhaseNet Project | ansonantony.tech")
-# --- Redirectable Caption at the bottom ---
+# Footer with Credits
 st.markdown(
     "<div style='text-align: center; color: white; opacity: 0.7; font-size: 0.8rem;'>"
     "© 2026 PhaseNet Project | <a href='https://ansonantony.tech' target='_blank' "
