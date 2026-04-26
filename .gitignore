@@ -2,4 +2,6 @@ data/
 wandb/
 __pycache__/
 *.pyc
-.DS_Store
+.DS_Storedataset.zip
+simulation/runs/
+*.pdf
